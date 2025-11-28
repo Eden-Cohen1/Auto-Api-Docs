@@ -1,0 +1,30 @@
+{
+  "name": "auto-api-docs",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Automatic API Documentation System - Learns from real traffic patterns",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:proxy": "npm run dev --workspace=docs-proxy",
+    "dev:collector": "npm run dev --workspace=docs-collector",
+    "dev:all": "concurrently \"npm run dev:proxy\" \"npm run dev:collector\"",
+    "analyze": "npm run analyze --workspace=docs-analyzer",
+    "check-docs-update": "npm run check --workspace=docs-pipeline-checker",
+    "update-docs": "npm run update --workspace=docs-pipeline-checker",
+    "generate-descriptions": "npm run generate --workspace=docs-ai-service",
+    "build": "npm run build --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "db:migrate": "node scripts/migrate-db.js"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "concurrently": "^8.2.2",
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  }
+}
